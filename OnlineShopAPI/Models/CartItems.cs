@@ -42,9 +42,9 @@ namespace OnlineShopAPI.Models
                     {
                         ReturnList.Add(new CartItem
                         {
-                            Cart_item_id = (int)OneRegistry["cart_item_id"],
-                            Cart_id = (int)OneRegistry["cart_id"],
-                            Product_id = (int)OneRegistry["product_id"],
+                            Cart_item_id = (ulong)OneRegistry["cart_item_id"],
+                            Cart_id = (ulong)OneRegistry["cart_id"],
+                            Product_id = (ulong)OneRegistry["product_id"],
                             Quantity = (int)OneRegistry["quantity"]
                         });
                     }
@@ -55,7 +55,7 @@ namespace OnlineShopAPI.Models
 
         }
 
-        public static CartItem getCartItemById(int SearchId)
+        public static CartItem getCartItemById(ulong SearchId)
         {
             MySqlConnection MyConnection = Util.getConnection();
 
@@ -86,8 +86,8 @@ namespace OnlineShopAPI.Models
                 {
                     if (MyTable.Rows.Count == 1)
                     {
-                        int Cart_id = (int)MyTable.Rows[0]["cart_id"];
-                        int Product_id = (int)MyTable.Rows[0]["product_id"];
+                        ulong Cart_id = (ulong)MyTable.Rows[0]["cart_id"];
+                        ulong Product_id = (ulong)MyTable.Rows[0]["product_id"];
                         int Quantity = (int)MyTable.Rows[0]["quantity"];
 
                         return new CartItem { Cart_item_id = SearchId, Cart_id = Cart_id, Product_id = Product_id, Quantity = Quantity };
@@ -127,7 +127,7 @@ namespace OnlineShopAPI.Models
                 {
                     MyCommand.ExecuteNonQuery();
                     MyCommand.CommandText = "select max(cart_item_id) as new_id from cart_items";
-                    NewCartItem.Cart_item_id = (int)MyCommand.ExecuteScalar();
+                    NewCartItem.Cart_item_id = (ulong)MyCommand.ExecuteScalar();
                 }
                 catch (MySqlException error)
                 {
@@ -153,7 +153,7 @@ namespace OnlineShopAPI.Models
 
         }
 
-        public static bool deleteCartItemById(int DeleteId, out string Errors)
+        public static bool deleteCartItemById(ulong DeleteId, out string Errors)
         {
             Errors = "";
             bool Success = false;
@@ -189,9 +189,9 @@ namespace OnlineShopAPI.Models
 
     public class CartItem
     {
-        public int Cart_item_id { get; set; }
-        public int Cart_id { get; set; }
-        public int Product_id { get; set; }
+        public ulong Cart_item_id { get; set; }
+        public ulong Cart_id { get; set; }
+        public ulong Product_id { get; set; }
         public int Quantity { get; set; }
     }
 

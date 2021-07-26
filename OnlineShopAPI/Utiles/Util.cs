@@ -8,7 +8,7 @@ namespace WebApplication1.Utiles
         public static MySqlConnection getConnection()
         {
             MySqlConnection MyConnection = new MySqlConnection();
-            MyConnection.ConnectionString = "Server=18.218.91.244; Uid=onlshp_admin; Pwd=OnlShp5894; Database=online_shop";
+            MyConnection.ConnectionString = "Server=18.218.91.244; Uid=onlshp_admin; Pwd=OnlShp5894; Database=online_shop_v2";
             bool Success = true;
             try
             {

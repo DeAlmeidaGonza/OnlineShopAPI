@@ -42,9 +42,10 @@ namespace OnlineShopAPI.Models
                     {
                         ReturnList.Add(new Cart
                         {
-                            Cart_id = (int)OneRegistry["cart_id"],
-                            User_id = (int)OneRegistry["user_id"],
+                            Cart_id = (ulong)OneRegistry["cart_id"],
+                            User_id = (ulong)OneRegistry["user_id"],
                             Creation_date = (DateTime)OneRegistry["creation_date"],
+                            Purchased = (bool)OneRegistry["purchased"],
                         });
                     }
                 }
@@ -54,7 +55,7 @@ namespace OnlineShopAPI.Models
 
         }
 
-        public static Cart getCartById(int SearchId)
+        public static Cart getCartById(ulong SearchId)
         {
             MySqlConnection MyConnection = Util.getConnection();
 
@@ -85,10 +86,11 @@ namespace OnlineShopAPI.Models
                 {
                     if (MyTable.Rows.Count == 1)
                     {
-                        int User_id = (int)MyTable.Rows[0]["user_id"];
+                        ulong User_id = (ulong)MyTable.Rows[0]["user_id"];
                         DateTime Creation_date = (DateTime)MyTable.Rows[0]["creation_date"];
+                        bool Purchased = (bool)MyTable.Rows[0]["purchased"];
 
-                        return new Cart { Cart_id = SearchId, User_id = User_id, Creation_date = Creation_date };
+                        return new Cart { Cart_id = SearchId, User_id = User_id, Creation_date = Creation_date, Purchased = Purchased };
                     }
                     else
                     {
@@ -116,15 +118,16 @@ namespace OnlineShopAPI.Models
                 MySqlCommand MyCommand = new MySqlCommand();
                 MyCommand.Connection = MyConnection;
                 MyCommand.CommandType = CommandType.Text;
-                MyCommand.CommandText = "insert into carts (user_id,creation_date) values (@UserId,@CreationDate)";
+                MyCommand.CommandText = "insert into carts (user_id,creation_date,purchased) values (@UserId,@CreationDate,@Purchased)";
                 MyCommand.Parameters.AddWithValue("@UserId", NewCart.User_id);
                 MyCommand.Parameters.AddWithValue("@CreationDate", NewCart.Creation_date);
+                MyCommand.Parameters.AddWithValue("@Purchased", NewCart.Purchased);
 
                 try
                 {
                     MyCommand.ExecuteNonQuery();
                     MyCommand.CommandText = "select max(cart_id) as new_id from carts";
-                    NewCart.Cart_id = (int)MyCommand.ExecuteScalar();
+                    NewCart.Cart_id = (ulong)MyCommand.ExecuteScalar();
                 }
                 catch (MySqlException error)
                 {
@@ -150,7 +153,7 @@ namespace OnlineShopAPI.Models
 
         }
 
-        public static bool deleteCartById(int DeleteId, out string Errors)
+        public static bool deleteCartById(ulong DeleteId, out string Errors)
         {
             Errors = "";
             bool Success = false;
@@ -186,9 +189,10 @@ namespace OnlineShopAPI.Models
 
     public class Cart
     {
-        public int Cart_id { get; set; }
-        public int User_id { get; set; }
+        public ulong Cart_id { get; set; }
+        public ulong User_id { get; set; }
         public DateTime Creation_date { get; set; }
+        public bool Purchased { get; set; }
     }
 
 }

@@ -18,7 +18,7 @@ namespace OnlineShopAPI.Controllers
         }
 
         [HttpGet("{Cart_item_id}")]
-        public IActionResult GetCartItemById(int Cart_item_id)
+        public IActionResult GetCartItemById(ulong Cart_item_id)
         {
             CartItem OneCartItem = CartItems.getCartItemById(Cart_item_id);
             if (OneCartItem != null)
@@ -48,7 +48,7 @@ namespace OnlineShopAPI.Controllers
         }
 
         [HttpDelete("{Cart_item_id}")]
-        public IActionResult DeleteCartItemById(int Cart_item_id)
+        public IActionResult DeleteCartItemById(ulong Cart_item_id)
         {
             String Errors;
             bool Success = CartItems.deleteCartItemById(Cart_item_id, out Errors);

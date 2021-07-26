@@ -18,7 +18,7 @@ namespace OnlineShopAPI.Controllers
         }
 
         [HttpGet("{Cart_id}")]
-        public IActionResult GetCartById(int Cart_id)
+        public IActionResult GetCartById(ulong Cart_id)
         {
             Cart OneCart = Carts.getCartById(Cart_id);
             if (OneCart != null)
@@ -36,6 +36,7 @@ namespace OnlineShopAPI.Controllers
         {
             string Errors;
             CreateCart.Creation_date = DateTime.Now;
+            CreateCart.Purchased = false;
             Cart NewCart = Carts.createNewCart(CreateCart, out Errors);
 
             if (NewCart != null)
@@ -49,7 +50,7 @@ namespace OnlineShopAPI.Controllers
         }
 
         [HttpDelete("{Cart_id}")]
-        public IActionResult DeleteCartById(int Cart_id)
+        public IActionResult DeleteCartById(ulong Cart_id)
         {
             String Errors;
             bool Success = Carts.deleteCartById(Cart_id, out Errors);

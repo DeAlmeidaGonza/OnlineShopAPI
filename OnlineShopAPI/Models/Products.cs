@@ -42,7 +42,7 @@ namespace OnlineShopAPI.Models
                     {
                         ReturnList.Add(new Product
                         {
-                            Product_id = (int)OneRegistry["product_id"],
+                            Product_id = (ulong)OneRegistry["product_id"],
                             Title = (string)OneRegistry["title"],
                             Price = (float)OneRegistry["price"],
                             Description = (string)OneRegistry["description"],
@@ -57,7 +57,7 @@ namespace OnlineShopAPI.Models
 
         }
 
-        public static Product getProductById(int SearchId)
+        public static Product getProductById(ulong SearchId)
         {
             MySqlConnection MyConnection = Util.getConnection();
 
@@ -148,7 +148,7 @@ namespace OnlineShopAPI.Models
                     {
                         ReturnList.Add(new Product
                         {
-                            Product_id = (int)OneRegistry["product_id"],
+                            Product_id = (ulong)OneRegistry["product_id"],
                             Title = (string)OneRegistry["title"],
                             Price = (float)OneRegistry["price"],
                             Description = (string)OneRegistry["description"],
@@ -171,7 +171,7 @@ namespace OnlineShopAPI.Models
 
     public class Product
     {
-        public int Product_id { get; set; }
+        public ulong Product_id { get; set; }
         public string Title { get; set; }
         public float Price { get; set; }
         public string Description { get; set; }

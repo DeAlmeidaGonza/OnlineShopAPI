@@ -18,7 +18,7 @@ namespace OnlineShopAPI.Controllers
         }
 
         [HttpGet("{Product_id}")]
-        public IActionResult GetProductById(int Product_id)
+        public IActionResult GetProductById(ulong Product_id)
         {
             Product OneProduct = Products.getProductById(Product_id);
             if (OneProduct != null)
