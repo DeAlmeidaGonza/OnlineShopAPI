@@ -167,8 +167,91 @@ namespace OnlineShopAPI.Models
 
         }
 
+        public static Product createNewProduct(Product NewProduct, out string Errors)
+        {
+            Errors = "";
+            MySqlConnection MyConnection = Util.getConnection();
+
+            if (MyConnection != null)
+            {
+                MySqlCommand MyCommand = new MySqlCommand();
+                MyCommand.Connection = MyConnection;
+                MyCommand.CommandType = CommandType.Text;
+                MyCommand.CommandText = "insert into products (product_id,title,price,description,category,image) values (@ProductId,@Title,@Price,@Description,@Category,@Image)";
+                MyCommand.Parameters.AddWithValue("@ProductId", NewProduct.Product_id);
+                MyCommand.Parameters.AddWithValue("@Title", NewProduct.Title);
+                MyCommand.Parameters.AddWithValue("@Price", NewProduct.Price);
+                MyCommand.Parameters.AddWithValue("@Description", NewProduct.Description);
+                MyCommand.Parameters.AddWithValue("@Category", NewProduct.Category);
+                MyCommand.Parameters.AddWithValue("@Image", NewProduct.Image);
+
+                try
+                {
+                    MyCommand.ExecuteNonQuery();
+                    MyCommand.CommandText = "select max(product_id) as new_id from products";
+                    NewProduct.Product_id = (ulong)MyCommand.ExecuteScalar();
+                }
+                catch (MySqlException error)
+                {
+                    if (error.Number == 1062)
+                    {
+                        //Registro duplicado
+                        Errors = "Registro duplicado";
+                    }
+                    else
+                    {
+                        Errors = error.Message;
+                    }
+                    NewProduct = null;
+                }
+                catch (SystemException error)
+                {
+                    Errors = error.Message;
+                    NewProduct = null;
+                }
+            }
+
+            return NewProduct;
+
+        }
+
+        public static bool deleteProductById(ulong DeleteId, out string Errors)
+        {
+            Errors = "";
+            bool Success = false;
+            MySqlConnection MyConnection = Util.getConnection();
+
+            if (MyConnection != null)
+            {
+                MySqlCommand MyCommand = new MySqlCommand();
+                MyCommand.Connection = MyConnection;
+                MyCommand.CommandType = CommandType.Text;
+                MyCommand.CommandText = "delete from products where product_id=@Id";
+                MyCommand.Parameters.AddWithValue("@Id", DeleteId);
+
+                try
+                {
+                    MyCommand.ExecuteNonQuery();
+                    Success = true;
+                }
+                catch (MySqlException error)
+                {
+                    Errors = error.Message;
+                }
+                catch (SystemException error)
+                {
+                    Errors = error.Message;
+                }
+            }
+
+            return Success;
+        }
+
     }
 
+    /// <summary>
+    /// Products in the inventory
+    /// </summary>
     public class Product
     {
         public ulong Product_id { get; set; }

@@ -223,6 +223,9 @@ namespace OnlineShopAPI.Models
 
     }
 
+    /// <summary>
+    /// Shopping carts for the users
+    /// </summary>
     public class Cart
     {
         public ulong Cart_id { get; set; }

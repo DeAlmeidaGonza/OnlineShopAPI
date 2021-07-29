@@ -9,6 +9,10 @@ namespace OnlineShopAPI.Controllers
     [Route("api/carts")]
     public class CartsController : ControllerBase
     {
+        /// <summary>
+        /// Get a list of all carts
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult GetAllCarts()
         {
@@ -17,6 +21,11 @@ namespace OnlineShopAPI.Controllers
             return Ok(CartList);
         }
 
+        /// <summary>
+        /// Get a cart by id
+        /// </summary>
+        /// <param name="Cart_id"></param>
+        /// <returns></returns>
         [HttpGet("{Cart_id}")]
         public IActionResult GetCartById(ulong Cart_id)
         {
@@ -31,6 +40,11 @@ namespace OnlineShopAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Create a new cart
+        /// </summary>
+        /// <param name="CreateCart"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult CreateNewCart(Cart CreateCart)
         {
@@ -49,6 +63,11 @@ namespace OnlineShopAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Delete a cart by id
+        /// </summary>
+        /// <param name="Cart_id"></param>
+        /// <returns></returns>
         [HttpDelete("{Cart_id}")]
         public IActionResult DeleteCartById(ulong Cart_id)
         {
@@ -64,6 +83,12 @@ namespace OnlineShopAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Update the "purchased" status of a cart
+        /// </summary>
+        /// <param name="Cart_Id"></param>
+        /// <param name="PatchCart"></param>
+        /// <returns></returns>
         [HttpPatch("{Cart_id}")]
         public IActionResult PatchCartById(ulong Cart_Id, Cart PatchCart)
         {

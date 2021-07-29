@@ -9,6 +9,12 @@ namespace OnlineShopAPI.Controllers
     [Route("api/users")]
     public class UsersController : ControllerBase
     {
+        /// <summary>
+        /// User login
+        /// </summary>
+        /// <param name="Email"></param>
+        /// <param name="Password"></param>
+        /// <returns></returns>
         [HttpGet("{Email}/{Password}")]
         public IActionResult UserLogin(string Email, string Password)
         {
@@ -23,6 +29,10 @@ namespace OnlineShopAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Get a list of all users
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult GetAllUsers()
         {
@@ -31,6 +41,11 @@ namespace OnlineShopAPI.Controllers
             return Ok(UserList);
         }
 
+        /// <summary>
+        /// Get a user by id
+        /// </summary>
+        /// <param name="User_id"></param>
+        /// <returns></returns>
         [HttpGet("{User_id}")]
         public IActionResult GetUserById(ulong User_id)
         {
@@ -45,6 +60,11 @@ namespace OnlineShopAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// User registration
+        /// </summary>
+        /// <param name="CreateUser"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult UserRegistration(User CreateUser)
         {
@@ -61,6 +81,11 @@ namespace OnlineShopAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Delete a user by id
+        /// </summary>
+        /// <param name="User_id"></param>
+        /// <returns></returns>
         [HttpDelete("{User_id}")]
         public IActionResult DeleteUserById(ulong User_id)
         {

@@ -243,6 +243,9 @@ namespace OnlineShopAPI.Models
 
     }
 
+    /// <summary>
+    /// Registered users
+    /// </summary>
     public class User
     {
         public ulong User_id { get; set; }

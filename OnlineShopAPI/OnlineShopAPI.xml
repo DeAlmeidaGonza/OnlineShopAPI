@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OnlineShopAPI</name>
+    </assembly>
+    <members>
+        <member name="M:OnlineShopAPI.Controllers.CartItemsController.GetAllCartItems">
+            <summary>
+            Get a list of all cart items
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OnlineShopAPI.Controllers.CartItemsController.GetCartItemById(System.UInt64)">
+            <summary>
+            Get a cart item by id
+            </summary>
+            <param name="Cart_item_id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OnlineShopAPI.Controllers.CartItemsController.CreateNewCartItem(OnlineShopAPI.Models.CartItem)">
+            <summary>
+            Create a new cart item
+            </summary>
+            <param name="CreateCartItem"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OnlineShopAPI.Controllers.CartItemsController.DeleteCartItemById(System.UInt64)">
+            <summary>
+            Delete a cart item by id
+            </summary>
+            <param name="Cart_item_id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OnlineShopAPI.Controllers.CartsController.GetAllCarts">
+            <summary>
+            Get a list of all carts
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OnlineShopAPI.Controllers.CartsController.GetCartById(System.UInt64)">
+            <summary>
+            Get a cart by id
+            </summary>
+            <param name="Cart_id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OnlineShopAPI.Controllers.CartsController.CreateNewCart(OnlineShopAPI.Models.Cart)">
+            <summary>
+            Create a new cart
+            </summary>
+            <param name="CreateCart"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OnlineShopAPI.Controllers.CartsController.DeleteCartById(System.UInt64)">
+            <summary>
+            Delete a cart by id
+            </summary>
+            <param name="Cart_id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OnlineShopAPI.Controllers.CartsController.PatchCartById(System.UInt64,OnlineShopAPI.Models.Cart)">
+            <summary>
+            Update the "purchased" status of a cart
+            </summary>
+            <param name="Cart_Id"></param>
+            <param name="PatchCart"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OnlineShopAPI.Controllers.ProductsController.GetAllProducts">
+            <summary>
+            Get a list of all products
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OnlineShopAPI.Controllers.ProductsController.GetProductById(System.UInt64)">
+            <summary>
+            Get a product by id
+            </summary>
+            <param name="Product_id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OnlineShopAPI.Controllers.ProductsController.GetProductByCategory(System.String)">
+            <summary>
+            Get a list of products by category
+            </summary>
+            <param name="Category"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OnlineShopAPI.Controllers.ProductsController.CreateNewProduct(OnlineShopAPI.Models.Product)">
+            <summary>
+            Create a new product
+            </summary>
+            <param name="CreateProduct"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OnlineShopAPI.Controllers.ProductsController.DeleteProductById(System.UInt64)">
+            <summary>
+            Delete a product by id
+            </summary>
+            <param name="Product_id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OnlineShopAPI.Controllers.UsersController.UserLogin(System.String,System.String)">
+            <summary>
+            User login
+            </summary>
+            <param name="Email"></param>
+            <param name="Password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OnlineShopAPI.Controllers.UsersController.GetAllUsers">
+            <summary>
+            Get a list of all users
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OnlineShopAPI.Controllers.UsersController.GetUserById(System.UInt64)">
+            <summary>
+            Get a user by id
+            </summary>
+            <param name="User_id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OnlineShopAPI.Controllers.UsersController.UserRegistration(OnlineShopAPI.Models.User)">
+            <summary>
+            User registration
+            </summary>
+            <param name="CreateUser"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OnlineShopAPI.Controllers.UsersController.DeleteUserById(System.UInt64)">
+            <summary>
+            Delete a user by id
+            </summary>
+            <param name="User_id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:OnlineShopAPI.Models.CartItem">
+            <summary>
+            Items to add to the shopping carts
+            </summary>
+        </member>
+        <member name="T:OnlineShopAPI.Models.Cart">
+            <summary>
+            Shopping carts for the users
+            </summary>
+        </member>
+        <member name="T:OnlineShopAPI.Models.Product">
+            <summary>
+            Products in the inventory
+            </summary>
+        </member>
+        <member name="T:OnlineShopAPI.Models.User">
+            <summary>
+            Registered users
+            </summary>
+        </member>
+    </members>
+</doc>

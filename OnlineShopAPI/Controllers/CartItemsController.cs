@@ -9,6 +9,10 @@ namespace OnlineShopAPI.Controllers
     [Route("api/cartitems")]
     public class CartItemsController : ControllerBase
     {
+        /// <summary>
+        /// Get a list of all cart items
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult GetAllCartItems()
         {
@@ -17,6 +21,11 @@ namespace OnlineShopAPI.Controllers
             return Ok(CartItemList);
         }
 
+        /// <summary>
+        /// Get a cart item by id
+        /// </summary>
+        /// <param name="Cart_item_id"></param>
+        /// <returns></returns>
         [HttpGet("{Cart_item_id}")]
         public IActionResult GetCartItemById(ulong Cart_item_id)
         {
@@ -31,6 +40,11 @@ namespace OnlineShopAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Create a new cart item
+        /// </summary>
+        /// <param name="CreateCartItem"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult CreateNewCartItem(CartItem CreateCartItem)
         {
@@ -47,6 +61,11 @@ namespace OnlineShopAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Delete a cart item by id
+        /// </summary>
+        /// <param name="Cart_item_id"></param>
+        /// <returns></returns>
         [HttpDelete("{Cart_item_id}")]
         public IActionResult DeleteCartItemById(ulong Cart_item_id)
         {
