@@ -64,5 +64,21 @@ namespace OnlineShopAPI.Controllers
             }
         }
 
+        [HttpPatch("{Cart_id}")]
+        public IActionResult PatchCartById(ulong Cart_Id, Cart PatchCart)
+        {
+            string Errors;
+            Cart UpdatedCart = Carts.patchCartbyId(Cart_Id, PatchCart, out Errors);
+
+            if (UpdatedCart != null)
+            {
+                return Ok(UpdatedCart);
+            }
+            else
+            {
+                return StatusCode(401, Errors);
+            }
+        }
+
     }
 }

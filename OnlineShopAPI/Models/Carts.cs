@@ -185,6 +185,42 @@ namespace OnlineShopAPI.Models
             return Success;
         }
 
+        public static Cart patchCartById(ulong SearchId, Cart UpdateCart, out string Errors)
+        {
+            Errors = "";
+
+            MySqlConnection MyConnection = Util.getConnection();
+
+            if (MyConnection != null)
+            {
+                MySqlCommand MyCommand = new MySqlCommand();
+                MyCommand.Connection = MyConnection;
+                MyCommand.CommandType = CommandType.Text;
+                MyCommand.CommandText = "update carts set purchased=@Purchased where cart_id=@Id";
+                MyCommand.Parameters.AddWithValue("@Purchased", UpdateCart.Purchased);
+                MyCommand.Parameters.AddWithValue("@Id", SearchId);
+
+                try
+                {
+                    MyCommand.ExecuteNonQuery();
+                    UpdateCart.Cart_id = SearchId;
+                }
+                catch (MySqlException error)
+                {
+                    Errors = error.Message;
+                    UpdateCart = null;
+                }
+                catch (SystemException error)
+                {
+                    Errors = error.Message;
+                    UpdateCart = null;
+                }
+            }
+
+            return UpdateCart;
+
+        }
+
     }
 
     public class Cart
