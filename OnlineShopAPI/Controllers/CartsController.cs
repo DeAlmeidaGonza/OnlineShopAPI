@@ -68,7 +68,7 @@ namespace OnlineShopAPI.Controllers
         public IActionResult PatchCartById(ulong Cart_Id, Cart PatchCart)
         {
             string Errors;
-            Cart UpdatedCart = Carts.patchCartbyId(Cart_Id, PatchCart, out Errors);
+            Cart UpdatedCart = Carts.patchCartById(Cart_Id, PatchCart, out Errors);
 
             if (UpdatedCart != null)
             {
