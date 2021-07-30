@@ -81,5 +81,25 @@ namespace OnlineShopAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Get a list of all cart items from a cart
+        /// </summary>
+        /// <param name="Cart_id"></param>
+        /// <returns></returns>
+        [HttpGet("getByCartId/{Cart_id}")]
+        public IActionResult GetCartItemsByCartId(string Cart_id)
+        {
+            List<CartItem> CartItemList;
+            CartItemList = CartItems.getCartItemsByCartId(Cart_id);
+            if (CartItemList != null)
+            {
+                return Ok(CartItemList);
+            }
+            else
+            {
+                return StatusCode(404, "El carrito no contiene articulos.");
+            }
+        }
+
     }
 }

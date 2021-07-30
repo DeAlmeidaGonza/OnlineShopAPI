@@ -185,6 +185,66 @@ namespace OnlineShopAPI.Models
             return Success;
         }
 
+        public static List<CartItem> getCartItemsByCartId(string CartId)
+        {
+            List<CartItem> ReturnList = new List<CartItem>();
+
+            MySqlConnection MyConnection = Util.getConnection();
+
+            if (MyConnection != null)
+            {
+                MySqlCommand MyCommand = new MySqlCommand();
+                MyCommand.Connection = MyConnection;
+                MyCommand.CommandType = CommandType.Text;
+                MyCommand.CommandText = "select * from cart_items where cart_id=@CartId";
+                MyCommand.Parameters.AddWithValue("@CartId", CartId);
+
+                DataTable MyTable = new DataTable();
+                MySqlDataAdapter MyAdapter = new MySqlDataAdapter();
+                MyAdapter.SelectCommand = MyCommand;
+
+                bool Success = true;
+                try
+                {
+                    MyAdapter.Fill(MyTable);
+                }
+                catch (SystemException error)
+                {
+                    Console.WriteLine("Error de lectura en la base de datos: " + error.Message);
+                    Success = false;
+                }
+
+                if (Success)
+                {
+                    if (MyTable.Rows.Count >= 1)
+                    {
+                        foreach (DataRow OneRegistry in MyTable.Rows)
+                        {
+                            ReturnList.Add(new CartItem
+                            {
+                                Cart_item_id = (ulong)OneRegistry["cart_item_id"],
+                                Cart_id = (ulong)OneRegistry["cart_id"],
+                                Product_id = (ulong)OneRegistry["product_id"],
+                                Quantity = (int)OneRegistry["quantity"],
+
+                            });
+                        }
+                    }
+                    else
+                    {
+                        ReturnList = null;
+                    }
+                }
+                else
+                {
+                    ReturnList = null;
+                }
+            }
+
+            return ReturnList;
+
+        }
+
     }
 
     /// <summary>

@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netcoreapp3.1\OnlineShopAPI.xml</DocumentationFile>
+    <OutputPath>bin\Debug\netcoreapp3.1</OutputPath>
+    <WarningLevel>5</WarningLevel>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>OnlineShopAPI.xml</DocumentationFile>
     <OutputPath></OutputPath>
   </PropertyGroup>

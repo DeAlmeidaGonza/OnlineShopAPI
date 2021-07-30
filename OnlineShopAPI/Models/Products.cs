@@ -144,17 +144,24 @@ namespace OnlineShopAPI.Models
 
                 if (Success)
                 {
-                    foreach (DataRow OneRegistry in MyTable.Rows)
+                    if (MyTable.Rows.Count >= 1)
                     {
-                        ReturnList.Add(new Product
+                        foreach (DataRow OneRegistry in MyTable.Rows)
                         {
-                            Product_id = (ulong)OneRegistry["product_id"],
-                            Title = (string)OneRegistry["title"],
-                            Price = (float)OneRegistry["price"],
-                            Description = (string)OneRegistry["description"],
-                            Category = (string)OneRegistry["category"],
-                            Image = (string)OneRegistry["image"],
-                        });
+                            ReturnList.Add(new Product
+                            {
+                                Product_id = (ulong)OneRegistry["product_id"],
+                                Title = (string)OneRegistry["title"],
+                                Price = (float)OneRegistry["price"],
+                                Description = (string)OneRegistry["description"],
+                                Category = (string)OneRegistry["category"],
+                                Image = (string)OneRegistry["image"],
+                            });
+                        }
+                    }
+                    else
+                    {
+                        ReturnList = null;
                     }
                 }
                 else
